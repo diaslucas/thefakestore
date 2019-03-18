@@ -1,12 +1,13 @@
 import React from 'react';
 import './app.scss';
+import AppNavbar from './components/Navbar';
+import Home from './components/Home';
 
-const App = () => {
-  return (
-    <React.Fragment>
-      <h1>Hello World!</h1>
-    </React.Fragment>
-  );
-};
+const App = () => (
+  <React.Fragment>
+    <AppNavbar />
+    <Home />
+  </React.Fragment>
+);
 
 export default App;
