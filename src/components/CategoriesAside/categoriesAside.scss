@@ -1,18 +1,4 @@
-@import '../../variables';
-
 .categorie-aside {
   flex: 1;
-}
-
-.categorie-menu li {
-  padding: 0;
-}
-
-.categorie-link {
-  padding: 0.75rem 1.25rem;
-}
-
-.categorie-link:hover {
-  background-color: $themeColor;
-  cursor: pointer;
+  padding-left: 1rem;
 }

@@ -1,9 +1,9 @@
 export const categories = [
-  { name: 'Bathroom', subcategories: ['Sinks', 'Mirrors'] },
-  { name: 'Bedroom', subcategories: ['Beds', 'Matresses', 'Nighstands'] },
-  { name: 'Kitchen', subcategories: ['Chairs', 'Tables'] },
-  { name: 'Living Room', subcategories: ['Sofas', 'Coffee and Side Tables'] },
-  { name: 'Office', subcategories: ['Desks', 'Chairs'] },
+  { id: 'bathroom', name: 'Bathroom', subcategories: ['Sinks', 'Mirrors'] },
+  { id: 'bedroom', name: 'Bedroom', subcategories: ['Beds', 'Matresses', 'Nighstands'] },
+  { id: 'kitchen', name: 'Kitchen', subcategories: ['Chairs', 'Tables'] },
+  { id: 'livingRoom', name: 'Living Room', subcategories: ['Sofas', 'Coffee and Side Tables'] },
+  { id: 'office', name: 'Office', subcategories: ['Desks', 'Chairs'] },
 ];
 
 export const products = [
