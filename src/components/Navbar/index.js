@@ -6,8 +6,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  Badge } from 'reactstrap';
+  NavLink } from 'reactstrap';
+import Cart from '../Cart';
 import './navbar.scss';
 
 export default class AppNavbar extends Component {
@@ -40,8 +40,7 @@ export default class AppNavbar extends Component {
               </NavItem>
               <NavItem>
                 <NavLink href="#">
-                  <i className="fas fa-shopping-cart fa-lg" />
-                  <Badge color="success">4</Badge>
+                  <Cart />
                 </NavLink>
               </NavItem>
             </Nav>
