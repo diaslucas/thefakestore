@@ -7,8 +7,36 @@ export const categories = [
 ];
 
 export const products = [
-  { name: 'Product 1', categorie: 'Beds', pictures: [] },
-  { name: 'Product 2', categorie: 'Beds', pictures: [] },
-  { name: 'Product 3', categorie: 'Beds', pictures: [] },
-  { name: 'Product 4', categorie: 'Beds', pictures: [] },
+  {
+    name: 'MALM',
+    categorie: 'Beds',
+    pictures: [
+      'https://www.ikea.com/us/en/images/products/malm-bed-frame-high__0559901_PE662082_S4.JPG',
+    ],
+    price: 199,
+  },
+  {
+    name: 'HEMNES',
+    categorie: 'Beds',
+    pictures: [
+      'https://www.ikea.com/us/en/images/products/hemnes-bed-frame__0637516_PE698353_S4.JPG',
+    ],
+    price: 249,
+  },
+  {
+    name: 'SKULSFJORD',
+    categorie: 'Beds',
+    pictures: [
+      'https://www.ikea.com/us/en/images/products/skulsfjord-bed-frame-gray__0622888_PE690810_S4.JPG',
+    ],
+    price: 499,
+  },
+  {
+    name: 'BRIMNES',
+    categorie: 'Beds',
+    pictures: [
+      'https://www.ikea.com/us/en/images/products/brimnes-bed-frame-with-storage-headboard-black__0553395_PE659474_S4.JPG',
+    ],
+    price: 399,
+  },
 ];
