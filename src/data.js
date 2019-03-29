@@ -6,8 +6,9 @@ export const categories = [
   { id: 'office', name: 'Office', subcategories: ['Desks', 'Chairs'] },
 ];
 
-export const products = [
-  {
+export const products = {
+  1: {
+    id: 1,
     name: 'MALM',
     categorie: 'Beds',
     pictures: [
@@ -15,7 +16,8 @@ export const products = [
     ],
     price: 199,
   },
-  {
+  2: {
+    id: 2,
     name: 'HEMNES',
     categorie: 'Beds',
     pictures: [
@@ -23,7 +25,8 @@ export const products = [
     ],
     price: 249,
   },
-  {
+  3: {
+    id: 3,
     name: 'SKULSFJORD',
     categorie: 'Beds',
     pictures: [
@@ -31,7 +34,8 @@ export const products = [
     ],
     price: 499,
   },
-  {
+  4: {
+    id: 4,
     name: 'BRIMNES',
     categorie: 'Beds',
     pictures: [
@@ -39,4 +43,4 @@ export const products = [
     ],
     price: 399,
   },
-];
+};

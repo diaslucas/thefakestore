@@ -1,0 +1,37 @@
+
+.cart-item {
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 2px solid #929292;
+}
+
+.cart-item-image {
+  border: 1px solid #dedede;
+  flex-basis: 25%;
+}
+
+.cart-item-info {
+  flex-basis: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-item-details {
+  flex-basis: 85%;
+}
+
+.cart-item-name {
+  font-weight: bold;
+}
+
+.cart-item-remove {
+  flex-basis: 10%;
+}
+
+.cart-item-remove:hover{
+  cursor: pointer;
+  color: red;
+}

@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
@@ -17,7 +18,7 @@ class ItemsBox extends PureComponent {
       <main className="items-box">
         <Container fluid>
           <Row>
-            {products.map(product => (
+            {_.values(products).map(product => (
               <Col md="3" key={product.name}>
                 <Product
                   name={product.name}
@@ -35,7 +36,13 @@ class ItemsBox extends PureComponent {
 }
 
 ItemsBox.propTypes = {
-  products: PropTypes.arrayOf(Object).isRequired,
+  products: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    categorie: PropTypes.string,
+    pictures: PropTypes.arrayOf(String),
+    price: PropTypes.number,
+  }).isRequired,
 };
 
 export default connect(
