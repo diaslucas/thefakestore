@@ -3,15 +3,21 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Badge, UncontrolledCollapse } from 'reactstrap';
 import './cart.scss';
+import { removeItemFromCart } from '../../actions';
+import CartItem from '../CartItem';
 
 const mapStateToProps = state => ({
   cart: state.cart,
 });
 
+const mapDispatchToProps = {
+  removeItemFromCart,
+};
+
 class Cart extends PureComponent {
   render() {
     const cartItemsStyle = { position: 'absolute', right: '10px', zIndex: '99' };
-    const { cart } = this.props;
+    const { cart, removeItemFromCart } = this.props;
     const { total, totalItems, items } = cart;
     return (
       <React.Fragment>
@@ -19,19 +25,10 @@ class Cart extends PureComponent {
         {totalItems > 0
           && <Badge color="success">{totalItems}</Badge>
         }
-        <UncontrolledCollapse toggler="#toggler" className="cart-items-box" style={cartItemsStyle}>
-          <div className="cart-item">
-            <div className="cart-item-image"><img className="img-fluid" src="https://www.ikea.com/us/en/images/products/brimnes-bed-frame-with-storage-headboard-black__0553395_PE659474_S4.JPG" /></div>
-            <div className="cart-item-info">
-              <div className="cart-item-details">
-                <div className="cart-item-name">HUNTIN</div>
-                <div>299$</div>
-              </div>
-              <div className="cart-item-remove">
-                <i className="fas fa-times-circle" />
-              </div>
-            </div>
-          </div>
+        <UncontrolledCollapse toggler="#toggler" className="cart-items-box shadow-lg p-3 mb-5 bg-white rounded" style={cartItemsStyle}>
+          {items.map(item => (
+            <CartItem key={item.id} name={item.name} imgSrc={item.pictures[0]} price={item.price} />
+          ))}
         </UncontrolledCollapse>
       </React.Fragment>
     );
@@ -48,5 +45,5 @@ Cart.propTypes = {
 
 export default connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 )(Cart);

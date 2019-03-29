@@ -1,21 +1,47 @@
 import { ADD_ITEM_TO_CART, REMOVE_ITEM_FROM_CART } from '../action_types';
 
-const initialState = { total: 0, totalItems: 0, items: null };
+const initialState = {
+  total: 0,
+  totalItems: 2,
+  items: [
+    {
+      id: 1,
+      name: 'MALM',
+      categorie: 'Beds',
+      pictures: ['https://www.ikea.com/us/en/images/products/malm-bed-frame-high__0559901_PE662082_S4.JPG'],
+      price: 199,
+    },
+    {
+      id: 2,
+      name: 'HEMNES',
+      categorie: 'Beds',
+      pictures: [
+        'https://www.ikea.com/us/en/images/products/hemnes-bed-frame__0637516_PE698353_S4.JPG',
+      ],
+      price: 249,
+    },
+  ],
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_ITEM_TO_CART: {
       const newItem = action.payload;
-      return [
+      const totalItems = state.totalItems + 1;
+      const { items } = state;
+      console.log(state);
+      return {
         ...state,
-        newItem,
-      ];
+        totalItems,
+        items: [
+          ...items,
+          newItem,
+        ],
+      };
     }
 
     case REMOVE_ITEM_FROM_CART: {
-      return [
-        ...state,
-      ];
+      return state;
     }
 
     default:

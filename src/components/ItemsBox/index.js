@@ -1,17 +1,26 @@
 import React, { PureComponent } from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 import './itemsBox.scss';
 import Product from '../Product';
-
+import { addItemToCart } from '../../actions';
 
 const mapStateToProps = state => ({
   products: state.products,
 });
 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ addItemToCart }, dispatch);
+}
+
 class ItemsBox extends PureComponent {
+  addItem(item) {
+    this.props.addItemToCart(item);
+  }
+
   render() {
     const { products } = this.props;
     return (
@@ -19,12 +28,13 @@ class ItemsBox extends PureComponent {
         <Container fluid>
           <Row>
             {_.values(products).map(product => (
-              <Col md="3" key={product.name}>
+              <Col md="3" key={product.id}>
                 <Product
                   name={product.name}
                   categorie={product.categorie}
                   pictures={product.pictures}
                   price={product.price}
+                  addToCart={() => this.addItem(product)}
                 />
               </Col>
             ))}
@@ -47,5 +57,5 @@ ItemsBox.propTypes = {
 
 export default connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 )(ItemsBox);
