@@ -38,10 +38,8 @@ export default class AppNavbar extends Component {
               <NavItem>
                 <NavLink href="/components/">My Purchases</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink href="#">
-                  <Cart />
-                </NavLink>
+              <NavItem className="nav-link">
+                <Cart />
               </NavItem>
             </Nav>
           </Collapse>
