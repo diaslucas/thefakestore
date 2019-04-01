@@ -17,12 +17,9 @@ function mapDispatchToProps(dispatch) {
 }
 
 class ItemsBox extends PureComponent {
-  addItem(item) {
-    this.props.addItemToCart(item);
-  }
-
   render() {
-    const { products } = this.props;
+    // eslint-disable-next-line no-shadow
+    const { products, addItemToCart } = this.props;
     return (
       <main className="items-box">
         <Container fluid>
@@ -34,7 +31,7 @@ class ItemsBox extends PureComponent {
                   categorie={product.categorie}
                   pictures={product.pictures}
                   price={product.price}
-                  addToCart={() => this.addItem(product)}
+                  onAdd={() => addItemToCart(product)}
                 />
               </Col>
             ))}

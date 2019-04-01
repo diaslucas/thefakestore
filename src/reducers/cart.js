@@ -1,7 +1,7 @@
 import { ADD_ITEM_TO_CART, REMOVE_ITEM_FROM_CART } from '../action_types';
 
 const initialState = {
-  total: 0,
+  total: 448,
   totalItems: 2,
   items: [
     {
@@ -28,11 +28,12 @@ export default (state = initialState, action) => {
     case ADD_ITEM_TO_CART: {
       const newItem = action.payload;
       const totalItems = state.totalItems + 1;
+      const total = state.total + action.payload.price;
       const { items } = state;
-      console.log(state);
       return {
         ...state,
         totalItems,
+        total,
         items: [
           ...items,
           newItem,
@@ -41,7 +42,18 @@ export default (state = initialState, action) => {
     }
 
     case REMOVE_ITEM_FROM_CART: {
-      return state;
+      const totalItems = state.totalItems - 1;
+      const total = state.total - action.payload.price;
+      const itemToBeRemovedId = action.payload.id;
+      const { items } = state;
+      return {
+        ...state,
+        totalItems,
+        total,
+        items: [
+          ...items.filter(item => item.id !== itemToBeRemovedId),
+        ],
+      };
     }
 
     default:

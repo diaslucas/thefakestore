@@ -2,7 +2,7 @@ import React from 'react';
 import './cartItem.scss';
 
 const CartItem = (props) => {
-  const { name, imgSrc, price } = props;
+  const { name, imgSrc, price, onRemove } = props;
   return (
     <div className="cart-item">
       <div className="cart-item-image">
@@ -13,9 +13,9 @@ const CartItem = (props) => {
           <div className="cart-item-name">{name}</div>
           <div>${price}</div>
         </div>
-        <div className="cart-item-remove">
+        <button type="button" className="cart-item-remove" onClick={() => onRemove()}>
           <i className="fas fa-times-circle" />
-        </div>
+        </button>
       </div>
     </div>
   );
