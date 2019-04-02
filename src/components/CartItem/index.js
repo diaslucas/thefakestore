@@ -2,11 +2,14 @@ import React from 'react';
 import './cartItem.scss';
 
 const CartItem = (props) => {
-  const { name, imgSrc, price, onRemove } = props;
+  const { name, imgSrc, quantity, price, onRemove } = props;
   return (
     <div className="cart-item">
       <div className="cart-item-image">
         <img className="img-fluid" alt={name} src={imgSrc} />
+      </div>
+      <div className="cart-item-quantity">
+        {quantity} <i className="fas fa-times" />
       </div>
       <div className="cart-item-info">
         <div className="cart-item-details">

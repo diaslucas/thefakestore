@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Badge, UncontrolledCollapse } from 'reactstrap';
+import { Badge, UncontrolledCollapse, UncontrolledPopover, PopoverBody } from 'reactstrap';
 import './cart.scss';
 import { removeItemFromCart } from '../../actions';
 import CartItem from '../CartItem';
@@ -21,26 +21,39 @@ class Cart extends PureComponent {
     // eslint-disable-next-line no-shadow
     const { cart, removeItemFromCart } = this.props;
     const { total, totalItems, items } = cart;
+    let cartContent;
+    if (totalItems > 0) {
+      cartContent = (
+        <React.Fragment>
+          <Badge color="success">{totalItems}</Badge>
+          <UncontrolledCollapse toggler="#cartToggler" className="cart-items-box shadow-lg p-3 mb-5 bg-white rounded" style={cartItemsStyle}>
+            {items.map(item => (
+              <CartItem
+                key={item.id}
+                name={item.name}
+                imgSrc={item.pictures[0]}
+                quantity={item.quantity}
+                price={item.price}
+                onRemove={() => removeItemFromCart(item)}
+              />
+            ))}
+            <div>
+              Total: ${total}
+            </div>
+          </UncontrolledCollapse>
+        </React.Fragment>
+      );
+    } else {
+      cartContent = (
+        <UncontrolledPopover placement="bottom" target="cartToggler">
+          <PopoverBody>No Items</PopoverBody>
+        </UncontrolledPopover>
+      );
+    }
     return (
       <React.Fragment>
-        <i className="fas fa-shopping-cart fa-lg" id="toggler" />
-        {totalItems > 0
-          && <Badge color="success">{totalItems}</Badge>
-        }
-        <UncontrolledCollapse toggler="#toggler" className="cart-items-box shadow-lg p-3 mb-5 bg-white rounded" style={cartItemsStyle}>
-          {items.map(item => (
-            <CartItem
-              key={item.id}
-              name={item.name}
-              imgSrc={item.pictures[0]}
-              price={item.price}
-              onRemove={() => removeItemFromCart(item)}
-            />
-          ))}
-          <div>
-            Total: ${total}
-          </div>
-        </UncontrolledCollapse>
+        <i className="fas fa-shopping-cart fa-lg" id="cartToggler" />
+        {cartContent}
       </React.Fragment>
     );
   }
