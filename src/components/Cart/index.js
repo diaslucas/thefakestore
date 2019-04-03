@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Badge, UncontrolledCollapse, UncontrolledPopover, PopoverBody } from 'reactstrap';
+import { Badge, UncontrolledPopover, PopoverBody } from 'reactstrap';
 import './cart.scss';
 import { removeItemFromCart } from '../../actions';
-import CartItem from '../CartItem';
+import CartItemsCollapse from '../CartItemsCollapse';
 
 const mapStateToProps = state => ({
   cart: state.cart,
@@ -17,7 +17,6 @@ function mapDispatchToProps(dispatch) {
 
 class Cart extends PureComponent {
   render() {
-    const cartItemsStyle = { position: 'absolute', right: '10px', zIndex: '99' };
     // eslint-disable-next-line no-shadow
     const { cart, removeItemFromCart } = this.props;
     const { total, totalItems, items } = cart;
@@ -26,21 +25,12 @@ class Cart extends PureComponent {
       cartContent = (
         <React.Fragment>
           <Badge color="success">{totalItems}</Badge>
-          <UncontrolledCollapse toggler="#cartToggler" className="cart-items-box shadow-lg p-3 mb-5 bg-white rounded" style={cartItemsStyle}>
-            {items.map(item => (
-              <CartItem
-                key={item.id}
-                name={item.name}
-                imgSrc={item.pictures[0]}
-                quantity={item.quantity}
-                price={item.price}
-                onRemove={() => removeItemFromCart(item)}
-              />
-            ))}
-            <div>
-              Total: ${total}
-            </div>
-          </UncontrolledCollapse>
+          <CartItemsCollapse
+            items={items}
+            total={total}
+            toggler="#cartToggler"
+            onRemove={() => removeItemFromCart()}
+          />
         </React.Fragment>
       );
     } else {
