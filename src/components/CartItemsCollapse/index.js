@@ -3,7 +3,7 @@ import { UncontrolledCollapse } from 'reactstrap';
 import CartItem from '../CartItem';
 
 const CartItemsCollapse = (props) => {
-  const { items, toggler, total, onRemove } = props;
+  const { items, toggler, total, onRemove, onDecrease, onIncrease } = props;
   const cartItemsStyle = { position: 'absolute', right: '10px', zIndex: '99' };
   return (
     <UncontrolledCollapse toggler={toggler} className="cart-items-box shadow-lg p-3 mb-5 bg-white rounded" style={cartItemsStyle}>
@@ -15,6 +15,8 @@ const CartItemsCollapse = (props) => {
           quantity={item.quantity}
           price={item.price}
           onRemove={() => onRemove(item)}
+          onDecrease={() => onDecrease(item)}
+          onIncrease={() => onIncrease(item)}
         />
       ))}
       <div>

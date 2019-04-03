@@ -4,3 +4,12 @@
   justify-content: space-evenly;
   margin-top: 30px;
 }
+
+.no-style-btn {
+  border: 0;
+  background: none;
+}
+
+.no-style-btn:focus {
+  outline: 0;
+}

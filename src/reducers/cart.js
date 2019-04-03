@@ -1,4 +1,4 @@
-import { ADD_ITEM_TO_CART, REMOVE_ITEM_FROM_CART } from '../action_types';
+import { ADD_ITEM_TO_CART, REMOVE_ITEM_FROM_CART, DECREASE_CART_ITEM_QUANTITY } from '../action_types';
 
 const initialState = {
   total: 0,
@@ -51,6 +51,23 @@ export default (state = initialState, action) => {
           ...items.filter(item => item.id !== itemToBeRemovedId),
         ],
       };
+    }
+
+    case DECREASE_CART_ITEM_QUANTITY: {
+      const { items } = state;
+      const existingItemIndex = items.findIndex(item => item.id === action.payload.id);
+      const totalItems = state.totalItems - 1;
+      const total = state.total - action.payload.price;
+      return {
+        ...state,
+        totalItems,
+        total,
+        items: [
+          ...items.slice(0, existingItemIndex),
+          { ...items[existingItemIndex], quantity: items[existingItemIndex].quantity - 1 },
+          ...items.slice(existingItemIndex + 1),
+        ],
+      }; 
     }
 
     default:

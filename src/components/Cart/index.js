@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Badge, UncontrolledPopover, PopoverBody } from 'reactstrap';
 import './cart.scss';
-import { removeItemFromCart } from '../../actions';
+import { addItemToCart, removeItemFromCart, decreaseCartItemQuantity } from '../../actions';
 import CartItemsCollapse from '../CartItemsCollapse';
 
 const mapStateToProps = state => ({
@@ -12,13 +12,13 @@ const mapStateToProps = state => ({
 });
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ removeItemFromCart }, dispatch);
+  return bindActionCreators({ addItemToCart, removeItemFromCart, decreaseCartItemQuantity }, dispatch);
 }
 
 class Cart extends PureComponent {
   render() {
     // eslint-disable-next-line no-shadow
-    const { cart, removeItemFromCart } = this.props;
+    const { cart, addItemToCart, removeItemFromCart, decreaseCartItemQuantity } = this.props;
     const { total, totalItems, items } = cart;
     let cartContent;
     if (totalItems > 0) {
@@ -29,7 +29,9 @@ class Cart extends PureComponent {
             items={items}
             total={total}
             toggler="#cartToggler"
-            onRemove={() => removeItemFromCart()}
+            onRemove={removeItemFromCart}
+            onDecrease={decreaseCartItemQuantity}
+            onIncrease={addItemToCart}
           />
         </React.Fragment>
       );
