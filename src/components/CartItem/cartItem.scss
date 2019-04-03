@@ -34,15 +34,8 @@
 
 .cart-item-remove {
   flex-basis: 10%;
-  border: 0;
-  background: none;
 }
 
 .cart-item-remove:hover {
-  cursor: pointer;
   color: red;
-}
-
-.cart-item-remove:focus {
-  outline: 0;
 }

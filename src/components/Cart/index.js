@@ -2,45 +2,37 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Badge, UncontrolledCollapse, UncontrolledPopover, PopoverBody } from 'reactstrap';
+import { Badge, UncontrolledPopover, PopoverBody } from 'reactstrap';
 import './cart.scss';
-import { removeItemFromCart } from '../../actions';
-import CartItem from '../CartItem';
+import { addItemToCart, removeItemFromCart, decreaseCartItemQuantity } from '../../actions';
+import CartItemsCollapse from '../CartItemsCollapse';
 
 const mapStateToProps = state => ({
   cart: state.cart,
 });
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ removeItemFromCart }, dispatch);
+  return bindActionCreators({ addItemToCart, removeItemFromCart, decreaseCartItemQuantity }, dispatch);
 }
 
 class Cart extends PureComponent {
   render() {
-    const cartItemsStyle = { position: 'absolute', right: '10px', zIndex: '99' };
     // eslint-disable-next-line no-shadow
-    const { cart, removeItemFromCart } = this.props;
+    const { cart, addItemToCart, removeItemFromCart, decreaseCartItemQuantity } = this.props;
     const { total, totalItems, items } = cart;
     let cartContent;
     if (totalItems > 0) {
       cartContent = (
         <React.Fragment>
           <Badge color="success">{totalItems}</Badge>
-          <UncontrolledCollapse toggler="#cartToggler" className="cart-items-box shadow-lg p-3 mb-5 bg-white rounded" style={cartItemsStyle}>
-            {items.map(item => (
-              <CartItem
-                key={item.id}
-                name={item.name}
-                imgSrc={item.pictures[0]}
-                quantity={item.quantity}
-                price={item.price}
-                onRemove={() => removeItemFromCart(item)}
-              />
-            ))}
-            <div>
-              Total: ${total}
-            </div>
-          </UncontrolledCollapse>
+          <CartItemsCollapse
+            items={items}
+            total={total}
+            toggler="#cartToggler"
+            onRemove={removeItemFromCart}
+            onDecrease={decreaseCartItemQuantity}
+            onIncrease={addItemToCart}
+          />
         </React.Fragment>
       );
     } else {
