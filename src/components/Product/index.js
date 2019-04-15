@@ -4,7 +4,7 @@ import { Card, CardImg, CardBody, CardTitle, CardSubtitle, Button } from 'reacts
 import './product.scss';
 
 const Product = (props) => {
-  const { name, categorie, pictures, price, onAdd } = props;
+  const { name, category, pictures, price, onAdd } = props;
   const firstPic = pictures[0];
   return (
     <Card>
@@ -12,7 +12,7 @@ const Product = (props) => {
       <CardBody>
         <CardTitle className="font-weight-bold">{name}</CardTitle>
         <CardSubtitle className="font-weight-bold">${price}</CardSubtitle>
-        <CardSubtitle>{categorie}</CardSubtitle>
+        <CardSubtitle>{category}</CardSubtitle>
         <Button color="success" onClick={() => onAdd()}>Add to cart</Button>
       </CardBody>
     </Card>
@@ -22,7 +22,7 @@ const Product = (props) => {
 
 Product.propTypes = {
   name: PropTypes.string.isRequired,
-  categorie: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   pictures: PropTypes.arrayOf(String).isRequired,
   price: PropTypes.number.isRequired,
 };

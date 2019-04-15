@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import { ListGroup, ListGroupItem, UncontrolledCollapse } from 'reactstrap';
 import './categoriesMenu.scss';
 
-const CategoriesMenu = ({ categories }) => (
+const CategoriesMenu = ({ categories, filterProducts }) => (
   <ListGroup className="categorie-menu">
-    {categories.map(categorie => (
-      <ListGroupItem key={categorie.id}>
-        <div id={categorie.id} className="categorie-link">{categorie.name}</div>
-        <UncontrolledCollapse toggler={`#${categorie.id}`}>
+    {categories.map(category => (
+      <ListGroupItem key={category.id}>
+        <div id={category.id} className="categorie-link">{category.name}</div>
+        <UncontrolledCollapse toggler={`#${category.id}`}>
           <ul>
-            {categorie.subcategories.map(subcategorie => (
-              <li key={subcategorie}>{subcategorie}</li>
+            {category.subcategories.map(subcategory => (
+              <li key={subcategory} onClick={() => filterProducts(subcategory)}>{subcategory}</li>
             ))}
           </ul>
         </UncontrolledCollapse>
