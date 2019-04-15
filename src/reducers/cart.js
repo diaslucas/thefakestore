@@ -67,7 +67,7 @@ export default (state = initialState, action) => {
           { ...items[existingItemIndex], quantity: items[existingItemIndex].quantity - 1 },
           ...items.slice(existingItemIndex + 1),
         ],
-      }; 
+      };
     }
 
     default:

@@ -25,10 +25,10 @@ class ItemsBox extends PureComponent {
         <Container fluid>
           <Row>
             {_.values(products).map(product => (
-              <Col md="3" key={product.id}>
+              <Col md="3" style={{ margin: '10px 0' }} key={product.id}>
                 <Product
                   name={product.name}
-                  categorie={product.categorie}
+                  category={product.category}
                   pictures={product.pictures}
                   price={product.price}
                   onAdd={() => addItemToCart(product)}
